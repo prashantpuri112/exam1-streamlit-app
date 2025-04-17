@@ -5,10 +5,10 @@ import numpy as np
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-# Setup page
-st.set_page_config(page_title="Car Price Analysis Full Output", layout="wide")
-st.title("🚗 Car Price Analysis Full Report")
-st.markdown("**Name:** Prashant Puri  **Banner ID:** 001397936")
+st.set_page_config(page_title="Car Price Analysis with Code", layout="wide")
+st.title("🚗 Car Price Analysis - Full Report with Code")
+st.markdown("**Name:** Prashant Puri  
+**Banner ID:** 001397936")
 
 # Table of Contents
 st.markdown("""
@@ -20,16 +20,34 @@ st.markdown("""
 5. [Correlation and Causation](#correlation-and-causation)
 """, unsafe_allow_html=True)
 
-# Section 1: Import Data
+# Section 1
 st.header("📥 Import Data")
-st.markdown("We will import the automobile dataset which includes features such as engine size, body style, drive wheels, and price.")
+st.markdown("We import the automobile dataset using pandas and display the first few rows.")
+code1 = '''
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 path = 'https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
 df = pd.read_csv(path)
+df.head()
+'''
+st.code(code1, language='python')
+df = pd.read_csv('https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv')
 st.dataframe(df.head())
 
-# Section 2: Feature Visualization
+# Section 2
 st.header("📊 Analyzing Individual Feature Patterns")
-st.markdown("Visualizing relationships using `regplot` and `boxplot` for better understanding of how each feature impacts price.")
+st.markdown("We visualize relationships between features and price.")
+
+code2 = '''
+sns.regplot(x="engine-size", y="price", data=df)
+sns.boxplot(x="body-style", y="price", data=df)
+sns.boxplot(x="drive-wheels", y="price", data=df)
+sns.regplot(x="highway-mpg", y="price", data=df)
+'''
+st.code(code2, language='python')
 
 fig1, ax1 = plt.subplots()
 sns.regplot(x="engine-size", y="price", data=df, ax=ax1)
@@ -47,16 +65,27 @@ fig4, ax4 = plt.subplots()
 sns.regplot(x="highway-mpg", y="price", data=df, ax=ax4)
 st.pyplot(fig4)
 
-# Section 3: Descriptive Statistics
+# Section 3
 st.header("📈 Descriptive Statistical Analysis")
-st.markdown("We use `describe()` to get summary statistics for each numerical feature.")
-desc = df.describe()
-st.dataframe(desc)
+st.markdown("We generate summary statistics for numerical features.")
 
-# Section 4: Basics of Grouping
+code3 = '''
+df.describe()
+'''
+st.code(code3, language='python')
+st.dataframe(df.describe())
+
+# Section 4
 st.header("🔍 Basics of Grouping")
-st.markdown("We group by `drive-wheels` and `body-style` to analyze average prices.")
+st.markdown("We group by `drive-wheels` and `body-style` to calculate average prices.")
 
+code4 = '''
+df_group_test1 = df[['drive-wheels', 'body-style', 'price']]
+grouped_test2 = df_group_test1.groupby(['drive-wheels', 'body-style'], as_index=False).mean()
+pivot = grouped_test2.pivot(index='drive-wheels', columns='body-style').fillna(0)
+pivot
+'''
+st.code(code4, language='python')
 df_group_test1 = df[['drive-wheels', 'body-style', 'price']]
 grouped_test2 = df_group_test1.groupby(['drive-wheels', 'body-style'], as_index=False).mean()
 pivot = grouped_test2.pivot(index='drive-wheels', columns='body-style').fillna(0)
@@ -67,12 +96,21 @@ pivot.plot(kind='bar', ax=ax5)
 plt.xticks(rotation=45)
 st.pyplot(fig5)
 
-# Section 5: Correlation and Causation
+# Section 5
 st.header("📌 Correlation and Causation")
-st.markdown("We use correlation matrix and visualizations to understand numerical relationships.")
+st.markdown("We check for relationships between features using correlation matrix and visualizations.")
+
+code5 = '''
+df.corr(numeric_only=True)
+sns.heatmap(corr, annot=True)
+sns.regplot(x="engine-size", y="price", data=df)
+sns.regplot(x="highway-mpg", y="price", data=df)
+sns.boxplot(x="drive-wheels", y="price", data=df)
+sns.boxplot(x="engine-location", y="price", data=df)
+'''
+st.code(code5, language='python')
 
 corr = df.corr(numeric_only=True)
-st.subheader("Correlation Matrix")
 st.dataframe(corr)
 
 fig6, ax6 = plt.subplots(figsize=(12, 6))
@@ -95,4 +133,4 @@ fig10, ax10 = plt.subplots()
 sns.boxplot(x="engine-location", y="price", data=df, ax=ax10)
 st.pyplot(fig10)
 
-st.success("✅ Full analysis complete. All outputs have been printed as per the notebook.")
+st.success("✅ All code and outputs included. Full report complete.")
