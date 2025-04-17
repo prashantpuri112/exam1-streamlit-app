@@ -7,8 +7,7 @@ import seaborn as sns
 
 st.set_page_config(page_title="Automobile Dataset Analysis", layout="wide")
 st.title("🚗 Automobile Dataset - Full Analysis")
-st.markdown("**Author:** Prashant Puri  
-**Banner ID:** 001397936")
+st.markdown("**Author:** Prashant Puri  **Banner ID:** 001397936")
 
 # Section 1: Load Data
 st.header("1. Import Data")
