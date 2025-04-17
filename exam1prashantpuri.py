@@ -2,134 +2,104 @@
 import streamlit as st
 import pandas as pd
 import numpy as np
-import seaborn as sns
 import matplotlib.pyplot as plt
+import seaborn as sns
 
-st.set_page_config(page_title="Car Price Analysis with Code", layout="wide")
-st.title("🚗 Car Price Analysis - Full Report with Code")
-st.markdown("**Name:** Prashant Puri  **Banner ID:** 001397936")
+st.set_page_config(page_title="Automobile Data Analysis", layout="wide")
+st.title("🚗 Automobile Dataset Analysis")
+st.markdown("**Name:** Prashant Puri  
+**Banner ID:** 001397936")
 
-# Table of Contents
-st.markdown("""
-## 📘 Table of Contents
-1. [Import Data](#import-data)
-2. [Analyzing Individual Feature Patterns](#analyzing-individual-feature-patterns)
-3. [Descriptive Statistical Analysis](#descriptive-statistical-analysis)
-4. [Basics of Grouping](#basics-of-grouping)
-5. [Correlation and Causation](#correlation-and-causation)
-""", unsafe_allow_html=True)
-
-# Section 1
-st.header("📥 Import Data")
-st.markdown("We import the automobile dataset using pandas and display the first few rows.")
-code1 = '''
+# Load dataset
+st.header("1. 📥 Import Data")
+code_import = '''
 import pandas as pd
-import numpy as np
-import seaborn as sns
-import matplotlib.pyplot as plt
-
 path = 'https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
 df = pd.read_csv(path)
 df.head()
 '''
-st.code(code1, language='python')
-df = pd.read_csv('https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv')
+st.code(code_import, language='python')
+path = 'https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
+df = pd.read_csv(path)
 st.dataframe(df.head())
 
-# Section 2
-st.header("📊 Analyzing Individual Feature Patterns")
-st.markdown("We visualize relationships between features and price.")
+# Visual inspection of variable relationships
+st.header("2. 📊 Regression Plots for Numerical Features")
+st.markdown("Visualizing relationships using `regplot` and `boxplot` for better understanding of how each feature impacts price.")
 
-code2 = '''
-sns.regplot(x="engine-size", y="price", data=df)
-sns.boxplot(x="body-style", y="price", data=df)
-sns.boxplot(x="drive-wheels", y="price", data=df)
-sns.regplot(x="highway-mpg", y="price", data=df)
-'''
-st.code(code2, language='python')
+for x_col in ["engine-size", "highway-mpg", "peak-rpm", "horsepower"]:
+    fig, ax = plt.subplots()
+    sns.regplot(x=x_col, y="price", data=df, ax=ax)
+    st.subheader(f"Price vs {x_col}")
+    st.pyplot(fig)
 
-fig1, ax1 = plt.subplots()
-sns.regplot(x="engine-size", y="price", data=df, ax=ax1)
-st.pyplot(fig1)
+# Boxplots
+st.header("3. 📦 Boxplot Visualizations for Categorical Features")
+for x_col in ["drive-wheels", "body-style", "engine-location"]:
+    fig, ax = plt.subplots()
+    sns.boxplot(x=x_col, y="price", data=df, ax=ax)
+    st.subheader(f"Price Distribution by {x_col}")
+    st.pyplot(fig)
 
-fig2, ax2 = plt.subplots()
-sns.boxplot(x="body-style", y="price", data=df, ax=ax2)
-st.pyplot(fig2)
-
-fig3, ax3 = plt.subplots()
-sns.boxplot(x="drive-wheels", y="price", data=df, ax=ax3)
-st.pyplot(fig3)
-
-fig4, ax4 = plt.subplots()
-sns.regplot(x="highway-mpg", y="price", data=df, ax=ax4)
-st.pyplot(fig4)
-
-# Section 3
-st.header("📈 Descriptive Statistical Analysis")
-st.markdown("We generate summary statistics for numerical features.")
-
-code3 = '''
-df.describe()
-'''
-st.code(code3, language='python')
+# Descriptive statistics
+st.header("4. 📈 Descriptive Statistical Analysis")
+code_stats = "df.describe()"
+st.code(code_stats, language='python')
 st.dataframe(df.describe())
 
-# Section 4
-st.header("🔍 Basics of Grouping")
-st.markdown("We group by `drive-wheels` and `body-style` to calculate average prices.")
+# Value counts
+st.header("5. 🔢 Value Counts")
+code_counts = "df['drive-wheels'].value_counts()"
+st.code(code_counts, language='python')
+st.dataframe(df['drive-wheels'].value_counts())
 
-code4 = '''
-df_group_test1 = df[['drive-wheels', 'body-style', 'price']]
-grouped_test2 = df_group_test1.groupby(['drive-wheels', 'body-style'], as_index=False).mean()
-pivot = grouped_test2.pivot(index='drive-wheels', columns='body-style').fillna(0)
-pivot
+# Grouping
+st.header("6. 🧮 Grouping and Pivot Table")
+code_group = '''
+df_group = df[['drive-wheels','body-style','price']]
+grouped = df_group.groupby(['drive-wheels','body-style'], as_index=False).mean()
+pivot = grouped.pivot(index='drive-wheels', columns='body-style', values='price').fillna(0)
 '''
-st.code(code4, language='python')
-df_group_test1 = df[['drive-wheels', 'body-style', 'price']]
-grouped_test2 = df_group_test1.groupby(['drive-wheels', 'body-style'], as_index=False).mean()
-pivot = grouped_test2.pivot(index='drive-wheels', columns='body-style').fillna(0)
+st.code(code_group, language='python')
+df_group = df[['drive-wheels','body-style','price']]
+grouped = df_group.groupby(['drive-wheels','body-style'], as_index=False).mean()
+pivot = grouped.pivot(index='drive-wheels', columns='body-style', values='price').fillna(0)
 st.dataframe(pivot)
 
-fig5, ax5 = plt.subplots(figsize=(10, 5))
-pivot.plot(kind='bar', ax=ax5)
+fig, ax = plt.subplots()
+pivot.plot(kind='bar', ax=ax)
 plt.xticks(rotation=45)
-st.pyplot(fig5)
+st.pyplot(fig)
 
-# Section 5
-st.header("📌 Correlation and Causation")
-st.markdown("We check for relationships between features using correlation matrix and visualizations.")
+# Correlation matrix
+st.header("7. 🧠 Correlation and Heatmap")
+code_corr = "df.corr(numeric_only=True)"
+st.code(code_corr, language='python')
+corr_matrix = df.corr(numeric_only=True)
+st.dataframe(corr_matrix)
 
-code5 = '''
-df.corr(numeric_only=True)
-sns.heatmap(corr, annot=True)
-sns.regplot(x="engine-size", y="price", data=df)
-sns.regplot(x="highway-mpg", y="price", data=df)
-sns.boxplot(x="drive-wheels", y="price", data=df)
-sns.boxplot(x="engine-location", y="price", data=df)
+fig_corr, ax_corr = plt.subplots(figsize=(12, 6))
+sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', ax=ax_corr)
+st.pyplot(fig_corr)
+
+# Specific correlation check
+st.header("8. 🔍 Feature-specific Correlation Checks")
+corr_code = '''
+df[['peak-rpm', 'price']].corr()
+df[['horsepower', 'price']].corr()
 '''
-st.code(code5, language='python')
+st.code(corr_code, language='python')
+st.write("**peak-rpm vs price correlation:**")
+st.dataframe(df[['peak-rpm', 'price']].corr())
 
-corr = df.corr(numeric_only=True)
-st.dataframe(corr)
+st.write("**horsepower vs price correlation:**")
+st.dataframe(df[['horsepower', 'price']].corr())
 
-fig6, ax6 = plt.subplots(figsize=(12, 6))
-sns.heatmap(corr, annot=True, cmap='coolwarm', ax=ax6)
-st.pyplot(fig6)
-
-fig7, ax7 = plt.subplots()
-sns.regplot(x="engine-size", y="price", data=df, ax=ax7)
-st.pyplot(fig7)
-
-fig8, ax8 = plt.subplots()
-sns.regplot(x="highway-mpg", y="price", data=df, ax=ax8)
-st.pyplot(fig8)
-
-fig9, ax9 = plt.subplots()
-sns.boxplot(x="drive-wheels", y="price", data=df, ax=ax9)
-st.pyplot(fig9)
-
-fig10, ax10 = plt.subplots()
-sns.boxplot(x="engine-location", y="price", data=df, ax=ax10)
-st.pyplot(fig10)
-
-st.success("✅ All code and outputs included. Full report complete.")
+# Summary
+st.header("✅ Summary and Insights")
+st.markdown("""
+- Engine size and horsepower have a **strong positive correlation** with price.
+- Peak RPM has a **weak correlation** and is likely not a good predictor of price.
+- Drive-wheels and engine-location show **clear differences** in boxplots.
+- Grouped analysis shows that **drive-wheels and body-style combinations** impact average prices.
+""")
