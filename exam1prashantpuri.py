@@ -513,7 +513,7 @@ fig, ax = plt.subplots()
 im = ax.pcolor(grouped_pivot, cmap='RdBu')
 
 #label names
-row_labels = grouped_pivot.columns.levels[1]
+row_labels = grouped_pivot.columns
 col_labels = grouped_pivot.index
 
 #move ticks and labels to the center
