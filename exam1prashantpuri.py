@@ -5,61 +5,42 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-st.set_page_config(page_title="Automobile Data Analysis", layout="wide")
-st.title("🚗 Automobile Dataset Analysis")
-st.markdown("**Name:** Prashant Puri  **Banner ID:** 001397936")
+st.set_page_config(page_title="Automobile Dataset Analysis", layout="wide")
+st.title("🚗 Automobile Dataset - Full Analysis")
+st.markdown("**Author:** Prashant Puri  
+**Banner ID:** 001397936")
 
-# Load dataset
-st.header("1. 📥 Import Data")
-code_import = '''
+# Section 1: Load Data
+st.header("1. Import Data")
+code = '''
 import pandas as pd
-path = 'https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
+path = "https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv"
 df = pd.read_csv(path)
 df.head()
 '''
-st.code(code_import, language='python')
-path = 'https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
+st.code(code, language='python')
+path = "https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv"
 df = pd.read_csv(path)
 st.dataframe(df.head())
 
-# Visual inspection of variable relationships
-st.header("2. 📊 Regression Plots for Numerical Features")
-st.markdown("Visualizing relationships using `regplot` and `boxplot` for better understanding of how each feature impacts price.")
-
-for x_col in ["engine-size", "highway-mpg", "peak-rpm", "horsepower"]:
-    fig, ax = plt.subplots()
-    sns.regplot(x=x_col, y="price", data=df, ax=ax)
-    st.subheader(f"Price vs {x_col}")
-    st.pyplot(fig)
-
-# Boxplots
-st.header("3. 📦 Boxplot Visualizations for Categorical Features")
-for x_col in ["drive-wheels", "body-style", "engine-location"]:
-    fig, ax = plt.subplots()
-    sns.boxplot(x=x_col, y="price", data=df, ax=ax)
-    st.subheader(f"Price Distribution by {x_col}")
-    st.pyplot(fig)
-
-# Descriptive statistics
-st.header("4. 📈 Descriptive Statistical Analysis")
-code_stats = "df.describe()"
-st.code(code_stats, language='python')
+# Section 2: Describe Data
+st.header("2. Descriptive Statistics")
+st.code("df.describe()", language="python")
 st.dataframe(df.describe())
 
-# Value counts
-st.header("5. 🔢 Value Counts")
-code_counts = "df['drive-wheels'].value_counts()"
-st.code(code_counts, language='python')
+# Section 3: Value Counts
+st.header("3. Drive Wheels Value Count")
+st.code("df['drive-wheels'].value_counts()", language="python")
 st.dataframe(df['drive-wheels'].value_counts())
 
-# Grouping
-st.header("6. 🧮 Grouping and Pivot Table")
-code_group = '''
+# Section 4: Grouping and Pivot Table
+st.header("4. Grouping by Drive-Wheels and Body-Style")
+group_code = '''
 df_group = df[['drive-wheels','body-style','price']]
 grouped = df_group.groupby(['drive-wheels','body-style'], as_index=False).mean()
 pivot = grouped.pivot(index='drive-wheels', columns='body-style', values='price').fillna(0)
 '''
-st.code(code_group, language='python')
+st.code(group_code, language='python')
 df_group = df[['drive-wheels','body-style','price']]
 grouped = df_group.groupby(['drive-wheels','body-style'], as_index=False).mean()
 pivot = grouped.pivot(index='drive-wheels', columns='body-style', values='price').fillna(0)
@@ -70,10 +51,9 @@ pivot.plot(kind='bar', ax=ax)
 plt.xticks(rotation=45)
 st.pyplot(fig)
 
-# Correlation matrix
-st.header("7. 🧠 Correlation and Heatmap")
-code_corr = "df.corr(numeric_only=True)"
-st.code(code_corr, language='python')
+# Section 5: Correlation
+st.header("5. Correlation Analysis")
+st.code("df.corr(numeric_only=True)", language="python")
 corr_matrix = df.corr(numeric_only=True)
 st.dataframe(corr_matrix)
 
@@ -81,24 +61,42 @@ fig_corr, ax_corr = plt.subplots(figsize=(12, 6))
 sns.heatmap(corr_matrix, annot=True, cmap='coolwarm', ax=ax_corr)
 st.pyplot(fig_corr)
 
-# Specific correlation check
-st.header("8. 🔍 Feature-specific Correlation Checks")
-corr_code = '''
-df[['peak-rpm', 'price']].corr()
-df[['horsepower', 'price']].corr()
-'''
-st.code(corr_code, language='python')
-st.write("**peak-rpm vs price correlation:**")
+# Section 6: Regression Plots
+st.header("6. Regression Plots")
+for col in ["engine-size", "highway-mpg", "peak-rpm", "horsepower"]:
+    st.subheader(f"Price vs {col}")
+    code = f"sns.regplot(x='{col}', y='price', data=df)"
+    st.code(code, language="python")
+    fig, ax = plt.subplots()
+    sns.regplot(x=col, y="price", data=df, ax=ax)
+    st.pyplot(fig)
+
+# Section 7: Boxplots
+st.header("7. Boxplots of Categorical Features")
+for cat_col in ["drive-wheels", "body-style", "engine-location"]:
+    st.subheader(f"Price by {cat_col}")
+    code = f"sns.boxplot(x='{cat_col}', y='price', data=df)"
+    st.code(code, language="python")
+    fig, ax = plt.subplots()
+    sns.boxplot(x=cat_col, y="price", data=df, ax=ax)
+    st.pyplot(fig)
+
+# Section 8: Specific Feature Correlation
+st.header("8. Specific Feature Correlation Checks")
+st.subheader("peak-rpm vs price")
+st.code("df[['peak-rpm', 'price']].corr()", language="python")
 st.dataframe(df[['peak-rpm', 'price']].corr())
 
-st.write("**horsepower vs price correlation:**")
+st.subheader("horsepower vs price")
+st.code("df[['horsepower', 'price']].corr()", language="python")
 st.dataframe(df[['horsepower', 'price']].corr())
 
 # Summary
-st.header("✅ Summary and Insights")
+st.header("9. Summary of Insights")
 st.markdown("""
-- Engine size and horsepower have a **strong positive correlation** with price.
-- Peak RPM has a **weak correlation** and is likely not a good predictor of price.
-- Drive-wheels and engine-location show **clear differences** in boxplots.
-- Grouped analysis shows that **drive-wheels and body-style combinations** impact average prices.
+- **Engine size** and **horsepower** show strong positive correlation with price.
+- **Peak RPM** has a weak correlation, suggesting it’s not a strong predictor.
+- **Drive-wheels** and **engine-location** clearly separate price distributions in boxplots.
+- Grouped averages by **drive-wheels and body-style** show price differences across configurations.
+- Correlation heatmap provides a holistic view of linear associations.
 """)
