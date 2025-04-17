@@ -5,8 +5,8 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-st.set_page_config(page_title="Exam 1 - Automobile Analysis", layout="wide")
-st.title("🚗 Exam 1 - Automobile Dataset Analysis")
+st.set_page_config(page_title="Exam 1 - Full Automobile Analysis", layout="wide")
+st.title("🚗 Exam 1 - Full Automobile Data Analysis")
 st.markdown("Prepared by **Prashant Puri** | MS in Analytics | Saint Louis University")
 
 # Load dataset
@@ -152,12 +152,10 @@ Import visualization packages "Matplotlib" and "Seaborn". Don't forget about "%m
 
 with st.expander("🔹 Code Cell 14", expanded=False):
     st.code("""import matplotlib.pyplot as plt
-import seaborn as sns
-%matplotlib inline""")
+import seaborn as sns""")
     try:
         import matplotlib.pyplot as plt
         import seaborn as sns
-        %matplotlib inline
     except Exception as e:
         st.warning(f"⚠️ Error in cell 14: {e}")
 
@@ -198,12 +196,10 @@ st.markdown("""
 
 with st.expander("🔹 Code Cell 18", expanded=False):
     st.code("""# Write your code below and press Shift+Enter to execute
-print(df['peak-rpm'].dtype)
-""")
+print(df['peak-rpm'].dtype)""")
     try:
         # Write your code below and press Shift+Enter to execute
         print(df['peak-rpm'].dtype)
-
     except Exception as e:
         st.warning(f"⚠️ Error in cell 18: {e}")
 
@@ -443,12 +439,10 @@ st.markdown("""
 
 with st.expander("🔹 Code Cell 44", expanded=False):
     st.code("""# Write your code below and press Shift+Enter to execute
-df[["stroke","price"]].corr()
-""")
+df[["stroke","price"]].corr()""")
     try:
         # Write your code below and press Shift+Enter to execute
         df[["stroke","price"]].corr()
-
     except Exception as e:
         st.warning(f"⚠️ Error in cell 44: {e}")
 
@@ -472,12 +466,10 @@ st.markdown("""
 
 with st.expander("🔹 Code Cell 46", expanded=False):
     st.code("""# Write your code below and press Shift+Enter to execute
-sns.regplot(x="stroke", y="price", data=df)
-""")
+sns.regplot(x="stroke", y="price", data=df)""")
     try:
         # Write your code below and press Shift+Enter to execute
         sns.regplot(x="stroke", y="price", data=df)
-
     except Exception as e:
         st.warning(f"⚠️ Error in cell 46: {e}")
 
@@ -899,11 +891,9 @@ If you did not import "pyplot", let's do it again.
 
 
 with st.expander("🔹 Code Cell 90", expanded=False):
-    st.code("""import matplotlib.pyplot as plt
-%matplotlib inline""")
+    st.code("""import matplotlib.pyplot as plt""")
     try:
         import matplotlib.pyplot as plt
-        %matplotlib inline
     except Exception as e:
         st.warning(f"⚠️ Error in cell 90: {e}")
 
@@ -1487,4 +1477,4 @@ Categorical variables:
 
 
 st.markdown("---")
-st.caption("Developed and deployed for academic use | Streamlit App Version | © 2025 Prashant Puri")
+st.caption("Fully Cleaned & Streamlit-Ready App | © 2025 Prashant Puri")
