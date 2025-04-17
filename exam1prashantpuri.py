@@ -7,7 +7,7 @@ from scipy import stats
 
 st.set_page_config(page_title='Exam 1 - Full Notebook UI', layout='wide')
 st.title('🚗 Exam 1 - Automobile Data Analysis - Full Code & Outputs')
-df = pd.read_csv('CleanedAutomobile.csv')
+df = pd.read_csv('https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv')
 st.dataframe(df.head())
 
 st.code("""
