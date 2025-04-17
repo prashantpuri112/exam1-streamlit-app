@@ -8,8 +8,7 @@ import matplotlib.pyplot as plt
 # Setup page
 st.set_page_config(page_title="Car Price Analysis Full Output", layout="wide")
 st.title("🚗 Car Price Analysis Full Report")
-st.markdown("**Name:** Prashant Puri  
-**Banner ID:** 001397936")
+st.markdown("**Name:** Prashant Puri  **Banner ID:** 001397936")
 
 # Table of Contents
 st.markdown("""
