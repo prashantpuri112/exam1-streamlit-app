@@ -451,6 +451,9 @@ grouped_test1
 # In[112]:
 
 
+df_gptest = df[['drive-wheels','body-style','price']]
+grouped_test1 = df_gptest.groupby(['drive-wheels','body-style'], as_index=False).mean()
+grouped_pivot = grouped_test1.pivot(index='drive-wheels', columns='body-style', values='price')
 grouped_pivot = grouped_pivot.fillna(0) #fill missing values with 0
 grouped_pivot
 
