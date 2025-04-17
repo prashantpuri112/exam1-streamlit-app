@@ -10,8 +10,7 @@ st.title('🚗 Exam 1 - Automobile Data Analysis')
 st.markdown('Prepared by **Prashant Puri** | Banner ID: 001397936 | MS in Analytics | SLU')
 
 # Load dataset from local file
-df = pd.read_csv('https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv
-')
+df = pd.read_csv('https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv')
 st.success('✅ Data loaded successfully.')
 st.dataframe(df.head())
 
