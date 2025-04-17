@@ -8,17 +8,16 @@ from scipy import stats
 
 st.set_page_config(page_title="Exam 1 - Automobile Data Analysis", layout="wide")
 st.title("🚗 Exam 1 - Automobile Data Analysis")
-st.markdown("Prepared by **Prashant Puri** | Banner ID: 001397936 | MS in Analytics | Saint Louis University")
+st.markdown("Prepared by **Prashant Puri** | Banner ID: 001397936")
 
 # Load dataset
+st.markdown("### Dataset Preview")
 path = 'https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
 df = pd.read_csv(path)
-st.success("Dataset loaded successfully.")
+st.success("✅ Data loaded successfully.")
 st.dataframe(df.head())
 
 
-
-#!/usr/bin/env python
 # coding: utf-8
 
 # #Prashant Puri
@@ -79,7 +78,6 @@ df.head()
 # To install Seaborn we use pip, the Python package manager.
 # 
 
-# Import visualization packages "Matplotlib" and "Seaborn". Don't forget about "%matplotlib inline" to plot in a Jupyter notebook.
 # 
 
 # In[84]:
@@ -308,7 +306,6 @@ sns.boxplot(x="drive-wheels", y="price", data=df)
 #     <li>the mean</li>
 #     <li>the standard deviation (std)</li>
 #     <li>the minimum value</li>
-#     <li>the IQR (Interquartile Range: 25%, 50% and 75%)</li>
 #     <li>the maximum value</li>
 # <ul>
 # 
@@ -575,7 +572,6 @@ print(correlation_matrix)
 # 
 
 # <b>P-value</b>
-# <p>What is this P-value? The P-value is the probability value that the correlation between these two variables is statistically significant. Normally, we choose a significance level of 0.05, which means that we are 95% confident that the correlation between the variables is significant.</p>
 # 
 # By convention, when the
 # <ul>
