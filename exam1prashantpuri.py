@@ -65,16 +65,13 @@ df.head()
 
 # To install Seaborn we use pip, the Python package manager.
 
-# Import visualization packages "Matplotlib" and "Seaborn". Don't forget about "%matplotlib inline" to plot in a Jupyter notebook.
 
 with st.expander('Code'):
     st.code('''import matplotlib.pyplot as plt
 import seaborn as sns
-%matplotlib inline''')
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-%matplotlib inline
 
 # <h4>How to choose the right visualization method?</h4>
 # <p>When visualizing individual variables, it is important to first understand what type of variable you are dealing with. This will help us find the right visualization method for that variable.</p>
@@ -444,10 +441,8 @@ body_style_avg_price
 
 with st.expander('Code'):
     st.code('''import matplotlib.pyplot as plt
-%matplotlib inline''')
 
 import matplotlib.pyplot as plt
-%matplotlib inline
 
 # <h4>Variables: Drive Wheels and Body Style vs. Price</h4>
 
