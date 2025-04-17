@@ -42,8 +42,8 @@ st.dataframe(df.head())
 # Import libraries:
 
 with st.expander('Code'):
-    st.code('''import pandas as pd
-import numpy as np''')
+st.code("""
+""")
 
 import pandas as pd
 import numpy as np
@@ -53,9 +53,9 @@ import numpy as np
 # This dataset was hosted on IBM Cloud object. Click <a href="https://cocl.us/DA101EN_object_storage">HERE</a> for free storage.
 
 with st.expander('Code'):
-    st.code('''path='https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
+st.code("""
 df = pd.read_csv(path)
-df.head()''')
+""")
 
 path='https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
 df = pd.read_csv(path)
@@ -67,7 +67,7 @@ df.head()
 
 
 with st.expander('Code'):
-    st.code('''import matplotlib.pyplot as plt
+st.code("""
 import seaborn as sns
 
 import matplotlib.pyplot as plt
@@ -77,8 +77,8 @@ import seaborn as sns
 # <p>When visualizing individual variables, it is important to first understand what type of variable you are dealing with. This will help us find the right visualization method for that variable.</p>
 
 with st.expander('Code'):
-    st.code('''# list the data types for each column
-print(df.dtypes)''')
+st.code("""
+""")
 
 # list the data types for each column
 print(df.dtypes)
@@ -90,9 +90,9 @@ print(df.dtypes)
 # </div>
 
 with st.expander('Code'):
-    st.code('''# Write your code below and press Shift+Enter to execute
+st.code("""
 print(df['peak-rpm'].dtype)
-''')
+""")
 
 # Write your code below and press Shift+Enter to execute
 print(df['peak-rpm'].dtype)
@@ -100,11 +100,11 @@ print(df['peak-rpm'].dtype)
 # For example, we can calculate the correlation between variables  of type "int64" or "float64" using the method "corr":
 
 with st.expander('Code'):
-    st.code('''# Correlation
+st.code("""
 
 numeric_cols = df.select_dtypes(include=['int64', 'float64']).columns
 correlation_matrix = df[numeric_cols].corr()
-print(correlation_matrix)''')
+""")
 
 # Correlation
 
@@ -122,8 +122,8 @@ print(correlation_matrix)
 # </div>
 
 with st.expander('Code'):
-    st.code('''# Write your code below and press Shift+Enter to execute
-df[['bore', 'stroke', 'compression-ratio', 'horsepower']].corr()''')
+st.code("""
+""")
 
 # Write your code below and press Shift+Enter to execute
 df[['bore', 'stroke', 'compression-ratio', 'horsepower']].corr()
@@ -141,9 +141,9 @@ df[['bore', 'stroke', 'compression-ratio', 'horsepower']].corr()
 # Let's find the scatterplot of "engine-size" and "price".
 
 with st.expander('Code'):
-    st.code('''# Engine size as potential predictor variable of price
+st.code("""
 sns.regplot(x="engine-size", y="price", data=df)
-plt.ylim(0,)''')
+""")
 
 # Engine size as potential predictor variable of price
 fig, ax = plt.subplots()
@@ -158,14 +158,14 @@ st.pyplot(fig)
 #  We can examine the correlation between 'engine-size' and 'price' and see that it's approximately 0.87.
 
 with st.expander('Code'):
-    st.code('''df[["engine-size", "price"]].corr()''')
+st.code("""
 
 df[["engine-size", "price"]].corr()
 
 # Highway mpg is a potential predictor variable of price. Let's find the scatterplot of "highway-mpg" and "price".
 
 with st.expander('Code'):
-    st.code('''sns.regplot(x="highway-mpg", y="price", data=df)''')
+st.code("""
 
 fig, ax = plt.subplots()
 sns.regplot(x="highway-mpg", y="price", data=df)
@@ -176,7 +176,7 @@ st.pyplot(fig)
 # We can examine the correlation between 'highway-mpg' and 'price' and see it's approximately -0.704.
 
 with st.expander('Code'):
-    st.code('''df[['highway-mpg', 'price']].corr()''')
+st.code("""
 
 df[['highway-mpg', 'price']].corr()
 
@@ -185,7 +185,7 @@ df[['highway-mpg', 'price']].corr()
 # Let's see if "peak-rpm" is a predictor variable of "price".
 
 with st.expander('Code'):
-    st.code('''sns.regplot(x="peak-rpm", y="price", data=df)''')
+st.code("""
 
 fig, ax = plt.subplots()
 sns.regplot(x="peak-rpm", y="price", data=df)
@@ -196,7 +196,7 @@ st.pyplot(fig)
 # We can examine the correlation between 'peak-rpm' and 'price' and see it's approximately -0.101616.
 
 with st.expander('Code'):
-    st.code('''df[['peak-rpm','price']].corr()''')
+st.code("""
 
 df[['peak-rpm','price']].corr()
 
@@ -208,9 +208,9 @@ df[['peak-rpm','price']].corr()
 # </div>
 
 with st.expander('Code'):
-    st.code('''# Write your code below and press Shift+Enter to execute
+st.code("""
 df[["stroke","price"]].corr()
-''')
+""")
 
 # Write your code below and press Shift+Enter to execute
 df[["stroke","price"]].corr()
@@ -223,9 +223,9 @@ df[["stroke","price"]].corr()
 # </div>
 
 with st.expander('Code'):
-    st.code('''# Write your code below and press Shift+Enter to execute
+st.code("""
 sns.regplot(x="stroke", y="price", data=df)
-''')
+""")
 
 # Write your code below and press Shift+Enter to execute
 fig, ax = plt.subplots()
@@ -239,7 +239,7 @@ st.pyplot(fig)
 # Let's look at the relationship between "body-style" and "price".
 
 with st.expander('Code'):
-    st.code('''sns.boxplot(x="body-style", y="price", data=df)''')
+st.code("""
 
 fig, ax = plt.subplots()
 sns.boxplot(x="body-style", y="price", data=df)
@@ -248,7 +248,7 @@ st.pyplot(fig)
 # <p>We see that the distributions of price between the different body-style categories have a significant overlap, so body-style would not be a good predictor of price. Let's examine engine "engine-location" and "price":</p>
 
 with st.expander('Code'):
-    st.code('''sns.boxplot(x="engine-location", y="price", data=df)''')
+st.code("""
 
 fig, ax = plt.subplots()
 sns.boxplot(x="engine-location", y="price", data=df)
@@ -259,8 +259,8 @@ st.pyplot(fig)
 #  Let's examine "drive-wheels" and "price".
 
 with st.expander('Code'):
-    st.code('''# drive-wheels
-sns.boxplot(x="drive-wheels", y="price", data=df)''')
+st.code("""
+""")
 
 # drive-wheels
 fig, ax = plt.subplots()
@@ -288,14 +288,14 @@ st.pyplot(fig)
 #  We can apply the method "describe" as follows:
 
 with st.expander('Code'):
-    st.code('''df.describe()''')
+st.code("""
 
 df.describe()
 
 #  The default setting of "describe" skips variables of type object. We can apply the method "describe" on the variables of type 'object' as follows:
 
 with st.expander('Code'):
-    st.code('''df.describe(include=['object'])''')
+st.code("""
 
 df.describe(include=['object'])
 
@@ -304,23 +304,23 @@ df.describe(include=['object'])
 # <p>Value counts is a good way of understanding how many units of each characteristic/variable we have. We can apply the "value_counts" method on the column "drive-wheels". Don’t forget the method "value_counts" only works on pandas series, not pandas dataframes. As a result, we only include one bracket <code>df['drive-wheels']</code>, not two brackets <code>df[['drive-wheels']]</code>.</p>
 
 with st.expander('Code'):
-    st.code('''df['drive-wheels'].value_counts()''')
+st.code("""
 
 df['drive-wheels'].value_counts()
 
 # We can convert the series to a dataframe as follows:
 
 with st.expander('Code'):
-    st.code('''df['drive-wheels'].value_counts().to_frame()''')
+st.code("""
 
 df['drive-wheels'].value_counts().to_frame()
 
 # Let's repeat the above steps but save the results to the dataframe "drive_wheels_counts" and rename the column  'drive-wheels' to 'value_counts'.
 
 with st.expander('Code'):
-    st.code('''drive_wheels_counts = df['drive-wheels'].value_counts().to_frame()
+st.code("""
 drive_wheels_counts.rename(columns={'drive-wheels': 'value_counts'}, inplace=True)
-drive_wheels_counts''')
+""")
 
 drive_wheels_counts = df['drive-wheels'].value_counts().to_frame()
 drive_wheels_counts.rename(columns={'drive-wheels': 'value_counts'}, inplace=True)
@@ -329,8 +329,8 @@ drive_wheels_counts
 #  Now let's rename the index to 'drive-wheels':
 
 with st.expander('Code'):
-    st.code('''drive_wheels_counts.index.name = 'drive-wheels'
-drive_wheels_counts''')
+st.code("""
+""")
 
 drive_wheels_counts.index.name = 'drive-wheels'
 drive_wheels_counts
@@ -338,11 +338,11 @@ drive_wheels_counts
 # We can repeat the above process for the variable 'engine-location'.
 
 with st.expander('Code'):
-    st.code('''# engine-location as variable
+st.code("""
 engine_loc_counts = df['engine-location'].value_counts().to_frame()
 engine_loc_counts.rename(columns={'engine-location': 'value_counts'}, inplace=True)
 engine_loc_counts.index.name = 'engine-location'
-engine_loc_counts.head(10)''')
+""")
 
 # engine-location as variable
 engine_loc_counts = df['engine-location'].value_counts().to_frame()
@@ -359,7 +359,7 @@ engine_loc_counts.head(10)
 # <p>For example, let's group by the variable "drive-wheels". We see that there are 3 different categories of drive wheels.</p>
 
 with st.expander('Code'):
-    st.code('''df['drive-wheels'].unique()''')
+st.code("""
 
 df['drive-wheels'].unique()
 
@@ -368,25 +368,25 @@ df['drive-wheels'].unique()
 # <p>We can select the columns 'drive-wheels', 'body-style' and 'price', then assign it to the variable "df_group_one".</p>
 
 with st.expander('Code'):
-    st.code('''df_group_one = df[['drive-wheels','body-style','price']]''')
+st.code("""
 
 df_group_one = df[['drive-wheels','body-style','price']]
 
 # We can then calculate the average price for each of the different categories of data.
 
 with st.expander('Code'):
-    st.code('''# grouping results
+st.code("""
 df_group_one = df_group_one.groupby(['drive-wheels'],as_index=False)['price'].mean()
-df_group_one''')
+""")
 
 # grouping results
 df_group_one = df_group_one.groupby(['drive-wheels'],as_index=False)['price'].mean()
 df_group_one
 
 with st.expander('Code'):
-    st.code('''# grouping results
+st.code("""
 df_group_one = df_group_one.groupby(['drive-wheels'],as_index=False).mean()
-df_group_one''')
+""")
 
 # grouping results
 df_group_one = df_group_one.groupby(['drive-wheels'],as_index=False).mean()
@@ -401,10 +401,10 @@ df_group_one
 # <p>In this case, we will leave the drive-wheels variable as the rows of the table, and pivot body-style to become the columns of the table:</p>
 
 with st.expander('Code'):
-    st.code('''# grouping results
+st.code("""
 df_gptest = df[['drive-wheels','body-style','price']]
 grouped_test1 = df_gptest.groupby(['drive-wheels','body-style'],as_index=False).mean()
-grouped_test1''')
+""")
 
 # grouping results
 df_gptest = df[['drive-wheels','body-style','price']]
@@ -412,8 +412,8 @@ grouped_test1 = df_gptest.groupby(['drive-wheels','body-style'],as_index=False).
 grouped_test1
 
 with st.expander('Code'):
-    st.code('''grouped_pivot = grouped_pivot.fillna(0) #fill missing values with 0
-grouped_pivot''')
+st.code("""
+""")
 
 grouped_pivot = grouped_pivot.fillna(0) #fill missing values with 0
 grouped_pivot
@@ -427,10 +427,10 @@ grouped_pivot
 # </div>
 
 with st.expander('Code'):
-    st.code('''# Write your code below and press Shift+Enter to execute
+st.code("""
 # Group by body-style and calculate the mean price
 body_style_avg_price = df.groupby('body-style')['price'].mean()
-body_style_avg_price''')
+""")
 
 # Write your code below and press Shift+Enter to execute
 # Group by body-style and calculate the mean price
@@ -440,7 +440,7 @@ body_style_avg_price
 # If you did not import "pyplot", let's do it again.
 
 with st.expander('Code'):
-    st.code('''import matplotlib.pyplot as plt
+st.code("""
 
 import matplotlib.pyplot as plt
 
@@ -449,10 +449,10 @@ import matplotlib.pyplot as plt
 # Let's use a heat map to visualize the relationship between Body Style vs Price.
 
 with st.expander('Code'):
-    st.code('''#use the grouped results
+st.code("""
 plt.pcolor(grouped_pivot, cmap='RdBu')
 plt.colorbar()
-plt.show()''')
+""")
 
 #use the grouped results
 fig, ax = plt.subplots()
@@ -470,7 +470,7 @@ st.pyplot(fig)
 # <p>The default labels convey no useful information to us. Let's change that:</p>
 
 with st.expander('Code'):
-    st.code('''fig, ax = plt.subplots()
+st.code("""
 im = ax.pcolor(grouped_pivot, cmap='RdBu')
 
 #label names
@@ -489,7 +489,7 @@ ax.set_yticklabels(col_labels, minor=False)
 plt.xticks(rotation=90)
 
 fig.colorbar(im)
-plt.show()''')
+""")
 
 fig, ax = plt.subplots()
 fig, ax = plt.subplots()
@@ -556,10 +556,10 @@ st.pyplot(fig)
 # <p>Pearson Correlation is the default method of the function "corr". Like before, we can calculate the Pearson Correlation of the of the 'int64' or 'float64'  variables.</p>
 
 with st.expander('Code'):
-    st.code('''# Calculate the Pearson correlation of numeric columns
+st.code("""
 numeric_cols = df.select_dtypes(include=['int64', 'float64']).columns
 correlation_matrix = df[numeric_cols].corr()
-print(correlation_matrix)''')
+""")
 
 # Calculate the Pearson correlation of numeric columns
 numeric_cols = df.select_dtypes(include=['int64', 'float64']).columns
@@ -582,7 +582,7 @@ print(correlation_matrix)
 #  We can obtain this information using  "stats" module in the "scipy"  library.
 
 with st.expander('Code'):
-    st.code('''from scipy import stats''')
+st.code("""
 
 from scipy import stats
 
@@ -591,8 +591,8 @@ from scipy import stats
 # Let's calculate the  Pearson Correlation Coefficient and P-value of 'wheel-base' and 'price'.
 
 with st.expander('Code'):
-    st.code('''pearson_coef, p_value = stats.pearsonr(df['wheel-base'], df['price'])
-print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P =", p_value)''')
+st.code("""
+""")
 
 pearson_coef, p_value = stats.pearsonr(df['wheel-base'], df['price'])
 print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P =", p_value)
@@ -605,8 +605,8 @@ print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value o
 #  Let's calculate the  Pearson Correlation Coefficient and P-value of 'horsepower' and 'price'.
 
 with st.expander('Code'):
-    st.code('''pearson_coef, p_value = stats.pearsonr(df['horsepower'], df['price'])
-print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value)''')
+st.code("""
+""")
 
 pearson_coef, p_value = stats.pearsonr(df['horsepower'], df['price'])
 print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value)
@@ -620,8 +620,8 @@ print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value o
 # Let's calculate the  Pearson Correlation Coefficient and P-value of 'length' and 'price'.
 
 with st.expander('Code'):
-    st.code('''pearson_coef, p_value = stats.pearsonr(df['length'], df['price'])
-print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value)''')
+st.code("""
+""")
 
 pearson_coef, p_value = stats.pearsonr(df['length'], df['price'])
 print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value)
@@ -634,8 +634,8 @@ print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value o
 #  Let's calculate the Pearson Correlation Coefficient and P-value of 'width' and 'price':
 
 with st.expander('Code'):
-    st.code('''pearson_coef, p_value = stats.pearsonr(df['width'], df['price'])
-print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P =", p_value )''')
+st.code("""
+""")
 
 pearson_coef, p_value = stats.pearsonr(df['width'], df['price'])
 print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P =", p_value )
@@ -649,8 +649,8 @@ print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value o
 #  Let's calculate the Pearson Correlation Coefficient and P-value of 'curb-weight' and 'price':
 
 with st.expander('Code'):
-    st.code('''pearson_coef, p_value = stats.pearsonr(df['curb-weight'], df['price'])
-print( "The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value)''')
+st.code("""
+""")
 
 pearson_coef, p_value = stats.pearsonr(df['curb-weight'], df['price'])
 print( "The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value)
@@ -663,8 +663,8 @@ print( "The Pearson Correlation Coefficient is", pearson_coef, " with a P-value 
 # Let's calculate the Pearson Correlation Coefficient and P-value of 'engine-size' and 'price':
 
 with st.expander('Code'):
-    st.code('''pearson_coef, p_value = stats.pearsonr(df['engine-size'], df['price'])
-print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P =", p_value)''')
+st.code("""
+""")
 
 pearson_coef, p_value = stats.pearsonr(df['engine-size'], df['price'])
 print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P =", p_value)
@@ -678,8 +678,8 @@ print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value o
 #  Let's calculate the  Pearson Correlation Coefficient and P-value of 'bore' and 'price':
 
 with st.expander('Code'):
-    st.code('''pearson_coef, p_value = stats.pearsonr(df['bore'], df['price'])
-print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P =  ", p_value )''')
+st.code("""
+""")
 
 pearson_coef, p_value = stats.pearsonr(df['bore'], df['price'])
 print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P =  ", p_value )
@@ -692,8 +692,8 @@ print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value o
 # <h3>City-mpg vs. Price</h3>
 
 with st.expander('Code'):
-    st.code('''pearson_coef, p_value = stats.pearsonr(df['city-mpg'], df['price'])
-print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value)''')
+st.code("""
+""")
 
 pearson_coef, p_value = stats.pearsonr(df['city-mpg'], df['price'])
 print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value)
@@ -704,8 +704,8 @@ print("The Pearson Correlation Coefficient is", pearson_coef, " with a P-value o
 # <h3>Highway-mpg vs. Price</h3>
 
 with st.expander('Code'):
-    st.code('''pearson_coef, p_value = stats.pearsonr(df['highway-mpg'], df['price'])
-print( "The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value )''')
+st.code("""
+""")
 
 pearson_coef, p_value = stats.pearsonr(df['highway-mpg'], df['price'])
 print( "The Pearson Correlation Coefficient is", pearson_coef, " with a P-value of P = ", p_value )
