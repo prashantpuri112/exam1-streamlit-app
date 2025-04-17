@@ -9,10 +9,9 @@ st.set_page_config(page_title='Exam 1 - Automobile Data Analysis', layout='wide'
 st.title('🚗 Exam 1 - Automobile Data Analysis')
 st.markdown('Prepared by **Prashant Puri** | Banner ID: 001397936 | MS in Analytics | SLU')
 
-# Load dataset
-path = 'https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
-df = pd.read_csv(path)
-st.success('✅ Dataset loaded successfully.')
+# Load dataset from local file
+df = pd.read_csv('CleanedAutomobile.csv')
+st.success('✅ Data loaded successfully.')
 st.dataframe(df.head())
 
 # coding: utf-8
@@ -41,7 +40,7 @@ st.dataframe(df.head())
 # 
 # Import libraries:
 # 
-# In[82]:
+# In[1]:
 with st.expander('📦 Code Cell'):
     st.code("""
     import pandas as pd
@@ -54,12 +53,11 @@ with st.expander('📦 Code Cell'):
 # This dataset was hosted on IBM Cloud object. Click <a href="https://cocl.us/DA101EN_object_storage">HERE</a> for free storage.
 # 
     
-# In[83]:
+# In[2]:
     
     
-    path='https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
+    path = 'CleanedAutomobile.csv'
     df = pd.read_csv(path)
-    df.head()
     
     
 # <h2 id="pattern_visualization">2. Analyzing Individual Feature Patterns Using Visualization</h2>
@@ -70,7 +68,7 @@ with st.expander('📦 Code Cell'):
     
 # 
     
-# In[84]:
+# In[3]:
     
     
     import matplotlib.pyplot as plt
@@ -81,7 +79,7 @@ with st.expander('📦 Code Cell'):
 # <p>When visualizing individual variables, it is important to first understand what type of variable you are dealing with. This will help us find the right visualization method for that variable.</p>
 # 
     
-# In[85]:
+# In[4]:
     
     
 # list the data types for each column
@@ -95,7 +93,7 @@ with st.expander('📦 Code Cell'):
 # </div>
 # 
     
-# In[86]:
+# In[5]:
     
     
 # Write your code below and press Shift+Enter to execute
@@ -105,7 +103,7 @@ with st.expander('📦 Code Cell'):
 # For example, we can calculate the correlation between variables  of type "int64" or "float64" using the method "corr":
 # 
     
-# In[87]:
+# In[6]:
     
     
 # Correlation
@@ -126,7 +124,7 @@ with st.expander('📦 Code Cell'):
 # </div>
 # 
     
-# In[88]:
+# In[7]:
     
     
 # Write your code below and press Shift+Enter to execute
@@ -149,7 +147,7 @@ with st.expander('📦 Code Cell'):
 # Let's find the scatterplot of "engine-size" and "price".
 # 
     
-# In[89]:
+# In[8]:
     
     
 # Engine size as potential predictor variable of price
@@ -163,7 +161,7 @@ with st.expander('📦 Code Cell'):
 # We can examine the correlation between 'engine-size' and 'price' and see that it's approximately 0.87.
 # 
     
-# In[90]:
+# In[9]:
     
     
     df[["engine-size", "price"]].corr()
@@ -172,7 +170,7 @@ with st.expander('📦 Code Cell'):
 # Highway mpg is a potential predictor variable of price. Let's find the scatterplot of "highway-mpg" and "price".
 # 
     
-# In[91]:
+# In[10]:
     
     
     sns.regplot(x="highway-mpg", y="price", data=df)
@@ -184,7 +182,7 @@ with st.expander('📦 Code Cell'):
 # We can examine the correlation between 'highway-mpg' and 'price' and see it's approximately -0.704.
 # 
     
-# In[92]:
+# In[11]:
     
     
     df[['highway-mpg', 'price']].corr()
@@ -196,7 +194,7 @@ with st.expander('📦 Code Cell'):
 # Let's see if "peak-rpm" is a predictor variable of "price".
 # 
     
-# In[93]:
+# In[12]:
     
     
     sns.regplot(x="peak-rpm", y="price", data=df)
@@ -208,7 +206,7 @@ with st.expander('📦 Code Cell'):
 # We can examine the correlation between 'peak-rpm' and 'price' and see it's approximately -0.101616.
 # 
     
-# In[94]:
+# In[13]:
     
     
     df[['peak-rpm','price']].corr()
@@ -222,7 +220,7 @@ with st.expander('📦 Code Cell'):
 # </div>
 # 
     
-# In[95]:
+# In[14]:
     
     
 # Write your code below and press Shift+Enter to execute
@@ -237,7 +235,7 @@ with st.expander('📦 Code Cell'):
 # </div>
 # 
     
-# In[96]:
+# In[15]:
     
     
 # Write your code below and press Shift+Enter to execute
@@ -252,7 +250,7 @@ with st.expander('📦 Code Cell'):
 # Let's look at the relationship between "body-style" and "price".
 # 
     
-# In[97]:
+# In[16]:
     
     
     sns.boxplot(x="body-style", y="price", data=df)
@@ -261,7 +259,7 @@ with st.expander('📦 Code Cell'):
 # <p>We see that the distributions of price between the different body-style categories have a significant overlap, so body-style would not be a good predictor of price. Let's examine engine "engine-location" and "price":</p>
 # 
     
-# In[98]:
+# In[17]:
     
     
     sns.boxplot(x="engine-location", y="price", data=df)
@@ -273,7 +271,7 @@ with st.expander('📦 Code Cell'):
 # Let's examine "drive-wheels" and "price".
 # 
     
-# In[99]:
+# In[18]:
     
     
 # drive-wheels
@@ -303,7 +301,7 @@ with st.expander('📦 Code Cell'):
 # We can apply the method "describe" as follows:
 # 
     
-# In[100]:
+# In[19]:
     
     
     df.describe()
@@ -312,7 +310,7 @@ with st.expander('📦 Code Cell'):
 # The default setting of "describe" skips variables of type object. We can apply the method "describe" on the variables of type 'object' as follows:
 # 
     
-# In[101]:
+# In[20]:
     
     
     df.describe(include=['object'])
@@ -324,7 +322,7 @@ with st.expander('📦 Code Cell'):
 # <p>Value counts is a good way of understanding how many units of each characteristic/variable we have. We can apply the "value_counts" method on the column "drive-wheels". Don’t forget the method "value_counts" only works on pandas series, not pandas dataframes. As a result, we only include one bracket <code>df['drive-wheels']</code>, not two brackets <code>df[['drive-wheels']]</code>.</p>
 # 
     
-# In[102]:
+# In[21]:
     
     
     df['drive-wheels'].value_counts()
@@ -333,7 +331,7 @@ with st.expander('📦 Code Cell'):
 # We can convert the series to a dataframe as follows:
 # 
     
-# In[103]:
+# In[22]:
     
     
     df['drive-wheels'].value_counts().to_frame()
@@ -342,7 +340,7 @@ with st.expander('📦 Code Cell'):
 # Let's repeat the above steps but save the results to the dataframe "drive_wheels_counts" and rename the column  'drive-wheels' to 'value_counts'.
 # 
     
-# In[104]:
+# In[23]:
     
     
     drive_wheels_counts = df['drive-wheels'].value_counts().to_frame()
@@ -353,7 +351,7 @@ with st.expander('📦 Code Cell'):
 # Now let's rename the index to 'drive-wheels':
 # 
     
-# In[105]:
+# In[24]:
     
     
     drive_wheels_counts.index.name = 'drive-wheels'
@@ -363,7 +361,7 @@ with st.expander('📦 Code Cell'):
 # We can repeat the above process for the variable 'engine-location'.
 # 
     
-# In[106]:
+# In[25]:
     
     
 # engine-location as variable
@@ -384,7 +382,7 @@ with st.expander('📦 Code Cell'):
 # <p>For example, let's group by the variable "drive-wheels". We see that there are 3 different categories of drive wheels.</p>
 # 
     
-# In[107]:
+# In[26]:
     
     
     df['drive-wheels'].unique()
@@ -395,7 +393,7 @@ with st.expander('📦 Code Cell'):
 # <p>We can select the columns 'drive-wheels', 'body-style' and 'price', then assign it to the variable "df_group_one".</p>
 # 
     
-# In[108]:
+# In[27]:
     
     
     df_group_one = df[['drive-wheels','body-style','price']]
@@ -404,7 +402,7 @@ with st.expander('📦 Code Cell'):
 # We can then calculate the average price for each of the different categories of data.
 # 
     
-# In[109]:
+# In[28]:
     
     
 # grouping results
@@ -412,7 +410,7 @@ with st.expander('📦 Code Cell'):
     df_group_one
     
     
-# In[110]:
+# In[29]:
     
     
 # grouping results
@@ -430,7 +428,7 @@ with st.expander('📦 Code Cell'):
 # <p>In this case, we will leave the drive-wheels variable as the rows of the table, and pivot body-style to become the columns of the table:</p>
 # 
     
-# In[111]:
+# In[30]:
     
     
 # grouping results
@@ -439,7 +437,15 @@ with st.expander('📦 Code Cell'):
     grouped_test1
     
     
-# In[112]:
+# In[31]:
+    
+    
+    df_gptest = df[['drive-wheels','body-style','price']]
+    grouped_test1 = df_gptest.groupby(['drive-wheels','body-style'], as_index=False).mean()
+    grouped_pivot = grouped_test1.pivot(index='drive-wheels', columns='body-style', values='price')
+    
+    
+# In[32]:
     
     
     grouped_pivot = grouped_pivot.fillna(0) #fill missing values with 0
@@ -456,7 +462,7 @@ with st.expander('📦 Code Cell'):
 # </div>
 # 
     
-# In[113]:
+# In[33]:
     
     
 # Write your code below and press Shift+Enter to execute
@@ -468,7 +474,7 @@ with st.expander('📦 Code Cell'):
 # If you did not import "pyplot", let's do it again.
 # 
     
-# In[114]:
+# In[34]:
     
     
     import matplotlib.pyplot as plt
@@ -480,28 +486,27 @@ with st.expander('📦 Code Cell'):
 # Let's use a heat map to visualize the relationship between Body Style vs Price.
 # 
     
-# In[115]:
+# In[35]:
     
     
 # use the grouped results
     plt.pcolor(grouped_pivot, cmap='RdBu')
     plt.colorbar()
     plt.show()
-    
-    
+    """)
+    st.pyplot(plt.gcf())
 # <p>The heatmap plots the target variable (price) proportional to colour with respect to the variables 'drive-wheel' and 'body-style' on the vertical and horizontal axis, respectively. This allows us to visualize how the price is related to 'drive-wheel' and 'body-style'.</p>
 # 
 # <p>The default labels convey no useful information to us. Let's change that:</p>
 # 
-    
-# In[116]:
-    
-    
+# In[36]:
+with st.expander('📦 Code Cell'):
+    st.code("""
     fig, ax = plt.subplots()
     im = ax.pcolor(grouped_pivot, cmap='RdBu')
     
 # label names
-    row_labels = grouped_pivot.columns.levels[1]
+    row_labels = grouped_pivot.columns
     col_labels = grouped_pivot.index
     
 # move ticks and labels to the center
@@ -517,25 +522,22 @@ with st.expander('📦 Code Cell'):
     
     fig.colorbar(im)
     plt.show()
-    
-    
+    """)
+    st.pyplot(plt.gcf())
 # <p>Visualization is very important in data science, and Python visualization packages provide great freedom. We will go more in-depth in a separate visualizations courses, probably in your second year.</p>
 # 
 # <p>The main question we want to answer in this module is, "What are the main characteristics which have the most impact on the car price?".</p>
 # 
 # <p>To get a better measure of the important characteristics, we look at the correlation of these variables with the car price. In other words: how is the car price dependent on this variable?</p>
 # 
-    
 # <h2 id="correlation_causation">5. Correlation and Causation</h2>
 # 
-    
 # <p><b>Correlation</b>: a measure of the extent of interdependence between variables.</p>
 # 
 # <p><b>Causation</b>: the relationship between cause and effect between two variables.</p>
 # 
 # <p>It is important to know the difference between these two. Correlation does not imply causation. Determining correlation is much simpler  the determining causation as causation may require independent experimentation.</p>
 # 
-    
 # <p><b>Pearson Correlation</b></p>
 # <p>The Pearson Correlation measures the linear dependence between two variables X and Y.</p>
 # <p>The resulting coefficient is a value between -1 and 1 inclusive, where:</p>
@@ -545,14 +547,12 @@ with st.expander('📦 Code Cell'):
 # <li><b>-1</b>: Perfect negative linear correlation.</li>
 # </ul>
 # 
-    
 # <p>Pearson Correlation is the default method of the function "corr". Like before, we can calculate the Pearson Correlation of the of the 'int64' or 'float64'  variables.</p>
 # 
-    
-# In[117]:
-    
-    
+# In[37]:
 # Calculate the Pearson correlation of numeric columns
+with st.expander('📦 Code Cell'):
+    st.code("""
     numeric_cols = df.select_dtypes(include=['int64', 'float64']).columns
     correlation_matrix = df[numeric_cols].corr()
     print(correlation_matrix)
@@ -575,7 +575,7 @@ with st.expander('📦 Code Cell'):
 # We can obtain this information using  "stats" module in the "scipy"  library.
 # 
     
-# In[118]:
+# In[38]:
     
     
     from scipy import stats
@@ -587,7 +587,7 @@ with st.expander('📦 Code Cell'):
 # Let's calculate the  Pearson Correlation Coefficient and P-value of 'wheel-base' and 'price'.
 # 
     
-# In[119]:
+# In[39]:
     
     
     pearson_coef, p_value = stats.pearsonr(df['wheel-base'], df['price'])
@@ -604,7 +604,7 @@ with st.expander('📦 Code Cell'):
 # Let's calculate the  Pearson Correlation Coefficient and P-value of 'horsepower' and 'price'.
 # 
     
-# In[120]:
+# In[40]:
     
     
     pearson_coef, p_value = stats.pearsonr(df['horsepower'], df['price'])
@@ -621,7 +621,7 @@ with st.expander('📦 Code Cell'):
 # Let's calculate the  Pearson Correlation Coefficient and P-value of 'length' and 'price'.
 # 
     
-# In[121]:
+# In[41]:
     
     
     pearson_coef, p_value = stats.pearsonr(df['length'], df['price'])
@@ -638,7 +638,7 @@ with st.expander('📦 Code Cell'):
 # Let's calculate the Pearson Correlation Coefficient and P-value of 'width' and 'price':
 # 
     
-# In[122]:
+# In[42]:
     
     
     pearson_coef, p_value = stats.pearsonr(df['width'], df['price'])
@@ -656,7 +656,7 @@ with st.expander('📦 Code Cell'):
 # Let's calculate the Pearson Correlation Coefficient and P-value of 'curb-weight' and 'price':
 # 
     
-# In[123]:
+# In[43]:
     
     
     pearson_coef, p_value = stats.pearsonr(df['curb-weight'], df['price'])
@@ -672,7 +672,7 @@ with st.expander('📦 Code Cell'):
 # Let's calculate the Pearson Correlation Coefficient and P-value of 'engine-size' and 'price':
 # 
     
-# In[124]:
+# In[44]:
     
     
     pearson_coef, p_value = stats.pearsonr(df['engine-size'], df['price'])
@@ -690,7 +690,7 @@ with st.expander('📦 Code Cell'):
 # Let's calculate the  Pearson Correlation Coefficient and P-value of 'bore' and 'price':
 # 
     
-# In[125]:
+# In[45]:
     
     
     pearson_coef, p_value = stats.pearsonr(df['bore'], df['price'])
@@ -707,7 +707,7 @@ with st.expander('📦 Code Cell'):
 # <h3>City-mpg vs. Price</h3>
 # 
     
-# In[126]:
+# In[46]:
     
     
     pearson_coef, p_value = stats.pearsonr(df['city-mpg'], df['price'])
@@ -721,7 +721,7 @@ with st.expander('📦 Code Cell'):
 # <h3>Highway-mpg vs. Price</h3>
 # 
     
-# In[127]:
+# In[47]:
     
     
     pearson_coef, p_value = stats.pearsonr(df['highway-mpg'], df['price'])
