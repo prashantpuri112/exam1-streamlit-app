@@ -5,9 +5,12 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 from scipy import stats
 
-st.set_page_config(page_title='Exam 1 - Full Notebook UI', layout='wide')
-st.title('🚗 Exam 1 - Automobile Data Analysis - Full Code & Outputs')
+st.set_page_config(page_title='Exam 1 - Full Notebook View', layout='wide')
+st.title('🚗 Exam 1 - Automobile Data Analysis (Notebook Style)')
+
+# Load dataset from GitHub
 df = pd.read_csv('https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv')
+st.success('✅ Dataset loaded from GitHub')
 st.dataframe(df.head())
 
 st.code("""
@@ -16,7 +19,7 @@ import numpy as np
 """)
 st.code("""
 
-path = 'https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
+path = 'CleanedAutomobile.csv'
 df = pd.read_csv(path)
 """)
 st.code("""
