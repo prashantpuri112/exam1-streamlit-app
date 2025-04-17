@@ -67,7 +67,6 @@ df.head()
 
 import matplotlib.pyplot as plt
 import seaborn as sns
-get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # <h4>How to choose the right visualization method?</h4>
@@ -466,7 +465,6 @@ body_style_avg_price
 
 
 import matplotlib.pyplot as plt
-get_ipython().run_line_magic('matplotlib', 'inline')
 
 
 # <h4>Variables: Drive Wheels and Body Style vs. Price</h4>
