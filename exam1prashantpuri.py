@@ -455,8 +455,11 @@ grouped_test1
 # In[112]:
 
 
-grouped_pivot = grouped_pivot.fillna(0) #fill missing values with 0
-grouped_pivot
+df_gptest = df[['drive-wheels','body-style','price']]
+grouped_test1 = df_gptest.groupby(['drive-wheels','body-style'], as_index=False).mean()
+grouped_pivot = grouped_test1.pivot(index='drive-wheels', columns='body-style', values='price')
+grouped_pivot = grouped_pivot.fillna(0)
+
 
 
 # <p>Often, we won't have data for some of the pivot cells. We can fill these missing cells with the value 0, but any other value could potentially be used as well. It should be mentioned that missing data is quite a complex subject and is an entire course on its own.</p>
