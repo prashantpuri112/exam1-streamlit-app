@@ -1,7 +1,4 @@
 
-# Streamlit App - Converted from Notebook
-# Author: Prashant Puri
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -12,6 +9,13 @@ from scipy import stats
 st.set_page_config(page_title="Exam 1 - Automobile Data Analysis", layout="wide")
 st.title("🚗 Exam 1 - Automobile Data Analysis")
 st.markdown("Prepared by **Prashant Puri** | MS in Analytics | Saint Louis University")
+
+# Load dataset
+st.markdown("### Load Dataset")
+path = 'https://raw.githubusercontent.com/klamsal/Fall2024Exam/refs/heads/main/CleanedAutomobile.csv'
+df = pd.read_csv(path)
+st.success("Data loaded successfully!")
+st.dataframe(df.head())
 
 
 #!/usr/bin/env python
